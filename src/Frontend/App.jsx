@@ -1,36 +1,46 @@
-import "./App.css";
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
-import Home from "./pages/Home";
-import About from "./pages/About";
-import Vans from "./pages/Vans";
-import VansDetail from "./pages/VansDetail";
-import "../Backend/api/server";
+import './App.css';
+import '../Backend/api/server';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import About from './pages/About';
+import Layout from './components/Layout';
+import Vans from './pages/Vans/Vans';
+import VansDetail from './pages/Vans/VansDetail';
+import Dashboard from './pages/Host/Dashboard';
+import Income from './pages/Host/Income';
+import Reviews from './pages/Host/Reviews';
+import HostLayout from './components/HostLayout';
+import VansHost from './pages/Host/VansHost';
+import VansHostDetail from './pages/Host/VansHostDetail';
+import VansHostInfo from './pages/Host/VansHostInfo';
+import VansHostPhotos from './pages/Host/VansHostPhotos';
+import VansHostPricing from './pages/Host/VansHostPricing';
 
 function App() {
   return (
     <BrowserRouter>
-      <header className="h-[110px] flex items-center px-[10px]">
-        <Link
-          className="site-logo text-black mr-auto uppercase font-[900] text-[25px] "
-          to={`/`}
-        >
-          #VANLIFE
-        </Link>
-        <nav className=" ">
-          <Link className="font-[600] text-[#4d4d4d] py-1 px-5" to="/about">
-            About
-          </Link>
-          <Link className="font-[600] text-[#4d4d4d] py-1 px-5 " to="/vans">
-            Vans
-          </Link>
-        </nav>
-      </header>
       <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/about" element={<About />}></Route>
-        <Route path="/vans" element={<Vans />}></Route>
-        {/* Route with params */}
-        <Route path="/vans/:id" element={<VansDetail />}></Route>
+        {/* Nested Paths */}
+        <Route path="/" element={<Layout />}>
+          {/*Index routes render into their parent's <Outlet/> at their parent's URL*/}
+          <Route index element={<Home />}></Route>
+          {/* Relative Paths */}
+          <Route path="about" element={<About />}></Route>
+          <Route path="vans" element={<Vans />}></Route>
+          {/* Route with params */}
+          <Route path="vans/:id" element={<VansDetail />}></Route>
+          <Route path="host" element={<HostLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="income" element={<Income />} />
+            <Route path="reviews" element={<Reviews />} />
+            <Route path="vans" element={<VansHost />} />
+            <Route path="vans/:id" element={<VansHostDetail />}>
+              <Route index element={<VansHostInfo />}></Route>
+              <Route path="pricing" element={<VansHostPricing />}></Route>
+              <Route path="photos" element={<VansHostPhotos />}></Route>
+            </Route>
+          </Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   );

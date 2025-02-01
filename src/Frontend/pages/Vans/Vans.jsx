@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
   const fetchVans = async () => {
-    const response = await fetch("/api/vans");
+    const response = await fetch('/api/vans');
     const data = await response.json();
     const vans = data?.vans;
     setVans(vans);
@@ -65,7 +65,7 @@ export default function Vans() {
           <button className="underline">Clear filters</button>
         </div>
       </div>
-      <div className="van-container px-6 ">
+      <div className="van-container px-6 mb-5 ">
         <div className="van-list grid grid-cols-2 gap-[34px] mt-[57px] justify-items-center">
           {vanElements}
         </div>
