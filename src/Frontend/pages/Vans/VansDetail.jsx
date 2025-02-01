@@ -1,10 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
 export default function VansDetail() {
   const params = useParams();
   const { id } = params;
+  const location = useLocation();
   const [vanDetail, setVanDetails] = useState(null);
+  console.log(location);
 
   useEffect(() => {
     const fetchVanDetail = async () => {
@@ -18,6 +20,16 @@ export default function VansDetail() {
 
   return (
     <div className="van-detail-container p-[27px]">
+      <Link
+        to={`..${location.state ? location.state.searchParam : null}`}
+        relative="path"
+        className="back-button ml-10 mt-5 inline-block "
+      >
+        &larr;{' '}
+        <span>
+          Back to {location.state.type ? location.state.type : 'all'} vans
+        </span>
+      </Link>
       {vanDetail ? (
         <div className="van-detail md:grid md:grid-cols-2 items-center flex flex-col text-[#161616]">
           <img

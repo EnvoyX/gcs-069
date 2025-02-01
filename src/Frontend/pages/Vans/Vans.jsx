@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
   const fetchVans = async () => {
-    const response = await fetch("/api/vans");
+    const response = await fetch('/api/vans');
     const data = await response.json();
     const vans = data?.vans;
     setVans(vans);
@@ -21,17 +21,28 @@ export default function Vans() {
   //     }, [])
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const typeFilter = searchParams.get("type");
-  console.log(typeFilter);
+  const typeFilter = searchParams.get('type');
 
   const filteredVans = typeFilter
     ? vans.filter((van) => van.type.toLowerCase() === typeFilter)
     : vans;
 
+  function handleFilterChange(key, value) {
+    setSearchParams((prevParams) => {
+      if (value === null) {
+        prevParams.delete(key);
+      } else {
+        prevParams.set(key, value);
+      }
+      return prevParams;
+    });
+  }
+
   const vanElements = filteredVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link
-        to={`/vans/${van.id}`}
+        to={`${van.id}`}
+        state={{ searchParam: `?${searchParams.toString()}`, type: typeFilter }}
         aria-label={`View details for ${van.name}, 
                              priced at $${van.price} per day`}
       >
@@ -56,35 +67,43 @@ export default function Vans() {
           <div className="van-list-filter-buttons flex items-center gap-5 mt-3">
             <div>
               <Link
-                onClick={() => setSearchParams({ type: "simple" })}
-                className="van-type simple bg-[#FFEAD0] py-1 px-4 rounded-lg"
+                onClick={() => handleFilterChange('type', 'simple')}
+                className={` ${
+                  typeFilter === 'simple' ? 'selected' : null
+                } van-type simple bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Simple
               </Link>
             </div>
             <div>
               <Link
-                onClick={() => setSearchParams({ type: "luxury" })}
-                className="van-type luxury bg-[#FFEAD0] py-1 px-4 rounded-lg"
+                onClick={() => handleFilterChange('type', 'luxury')}
+                className={`van-type ${
+                  typeFilter === 'luxury' ? 'selected' : null
+                }  luxury bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Luxury
               </Link>
             </div>
             <div>
               <Link
-                onClick={() => setSearchParams({ type: "rugged" })}
-                className="van-type rugged bg-[#FFEAD0] py-1 px-4 rounded-lg"
+                onClick={() => handleFilterChange('type', 'rugged')}
+                className={`van-type ${
+                  typeFilter === 'rugged' ? 'selected' : null
+                } rugged bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Rugged
               </Link>
             </div>
           </div>
-          <Link
-            onClick={() => setSearchParams({})}
-            className="van-type clear-filters underline"
-          >
-            Clear filters
-          </Link>
+          {typeFilter && (
+            <Link
+              onClick={() => handleFilterChange('type', null)}
+              className="van-type clear-filters underline"
+            >
+              Clear filters
+            </Link>
+          )}
         </div>
       </div>
       <div className="van-container px-6 mb-5 ">
