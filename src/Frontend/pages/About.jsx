@@ -1,5 +1,5 @@
-import bgImg from '../assets/images/about-hero.png';
-import { Link } from 'react-router-dom';
+import bgImg from "../assets/images/about-hero.png";
+import { Link } from "react-router-dom";
 
 export default function About() {
   return (
@@ -23,7 +23,10 @@ export default function About() {
           <br />
           Your van is ready.
         </h2>
-        <Link className="link-button" to="/vans">
+        <Link
+          className="link-button inline-block text-center bg-[#161616] py-[0.75rem] mt-[27px] w-full font-bold text-white rounded-[10px] transition-all cursor-pointer hover:scale-105 "
+          to="/vans"
+        >
           Explore our vans
         </Link>
       </div>
