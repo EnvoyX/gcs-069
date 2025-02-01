@@ -1,18 +1,18 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function Vans() {
   const [vans, setVans] = useState([]);
   const fetchVans = async () => {
-    const response = await fetch('/api/vans');
+    const response = await fetch("/api/vans");
     const data = await response.json();
     const vans = data?.vans;
     setVans(vans);
   };
+
   useEffect(() => {
     fetchVans();
   }, []);
-
   //    const [vans, setVans] = useState([])
   //     useEffect(() => {
   //         fetch("/api/vans")
@@ -20,7 +20,15 @@ export default function Vans() {
   //             .then(data => setVans(data.vans))
   //     }, [])
 
-  const vanElements = vans.map((van) => (
+  const [searchParams, setSearchParams] = useSearchParams();
+  const typeFilter = searchParams.get("type");
+  console.log(typeFilter);
+
+  const filteredVans = typeFilter
+    ? vans.filter((van) => van.type.toLowerCase() === typeFilter)
+    : vans;
+
+  const vanElements = filteredVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link
         to={`/vans/${van.id}`}
@@ -45,24 +53,38 @@ export default function Vans() {
       <div className="heading flex flex-col px-6">
         <h1 className="text-2xl font-bold">Explore our van options</h1>
         <div className="filters flex justify-between items-center">
-          <div className="filter-category flex items-center gap-5 mt-3">
+          <div className="van-list-filter-buttons flex items-center gap-5 mt-3">
             <div>
-              <button className="bg-[#FFEAD0] py-1 px-4 rounded-lg">
+              <Link
+                onClick={() => setSearchParams({ type: "simple" })}
+                className="van-type simple bg-[#FFEAD0] py-1 px-4 rounded-lg"
+              >
                 Simple
-              </button>
+              </Link>
             </div>
             <div>
-              <button className="bg-[#FFEAD0] py-1 px-4 rounded-lg">
+              <Link
+                onClick={() => setSearchParams({ type: "luxury" })}
+                className="van-type luxury bg-[#FFEAD0] py-1 px-4 rounded-lg"
+              >
                 Luxury
-              </button>
+              </Link>
             </div>
             <div>
-              <button className="bg-[#FFEAD0] py-1 px-4 rounded-lg">
+              <Link
+                onClick={() => setSearchParams({ type: "rugged" })}
+                className="van-type rugged bg-[#FFEAD0] py-1 px-4 rounded-lg"
+              >
                 Rugged
-              </button>
+              </Link>
             </div>
           </div>
-          <button className="underline">Clear filters</button>
+          <Link
+            onClick={() => setSearchParams({})}
+            className="van-type clear-filters underline"
+          >
+            Clear filters
+          </Link>
         </div>
       </div>
       <div className="van-container px-6 mb-5 ">

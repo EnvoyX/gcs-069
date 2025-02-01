@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 /* CSS RESET */
 * {
@@ -10,7 +10,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #fff7ed;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 /* CSS RESET */
 
@@ -74,7 +74,7 @@ header a:hover {
 /* HOME PAGE */
 .home-container {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.46), rgba(0, 0, 0, 0.46)),
-    url('./assets/images/home-hero.png') no-repeat center center;
+    url("./assets/images/home-hero.png") no-repeat center center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -156,7 +156,7 @@ header a:hover {
 } */
 
 /*** VAN PAGES ***/
-.van-list-container {
+/* .van-list-container {
   padding-inline: 23px;
 }
 
@@ -181,7 +181,7 @@ header a:hover {
 .van-list-container button {
   margin-right: 20px;
   cursor: pointer;
-}
+} */
 
 .van-type {
   height: 34px;
@@ -235,7 +235,7 @@ header a:hover {
   color: #4d4d4d;
 }
 
-i[class*='van-type-'] {
+i[class*="van-type-"] {
   padding: 7px 14px;
 }
 
