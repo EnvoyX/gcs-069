@@ -34,5 +34,5 @@ pnpm run dev
 
 ##
 Website ini mengenai web penyewaan van, yang user nya dapat melihat daftar van yang dapat disewa,
-dan melihat detail atau informasi lengkap van.
+dan melihat detail atau informasi lengkap van. User juga dapat meng-filter tipe vans.
 
