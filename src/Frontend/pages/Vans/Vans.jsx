@@ -1,32 +1,15 @@
-import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import getVans from "../../lib/api";
+import { Link, useSearchParams, useLoaderData } from "react-router-dom";
+
+export function loader() {
+  return getVans();
+}
 
 export default function Vans() {
-  const [vans, setVans] = useState([]);
-  const fetchVans = async () => {
-    const response = await fetch('/api/vans');
-    const data = await response.json();
-    const vans = data?.vans;
-    setVans(vans);
-  };
-
-  useEffect(() => {
-    fetchVans();
-  }, []);
-  //    const [vans, setVans] = useState([])
-  //     useEffect(() => {
-  //         fetch("/api/vans")
-  //             .then(res => res.json())
-  //             .then(data => setVans(data.vans))
-  //     }, [])
+  const vans = useLoaderData();
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const typeFilter = searchParams.get('type');
-
-  const filteredVans = typeFilter
-    ? vans.filter((van) => van.type.toLowerCase() === typeFilter)
-    : vans;
-
+  const typeFilter = searchParams.get("type");
   function handleFilterChange(key, value) {
     setSearchParams((prevParams) => {
       if (value === null) {
@@ -38,6 +21,10 @@ export default function Vans() {
     });
   }
 
+  const filteredVans = typeFilter
+    ? vans.filter((van) => van.type.toLowerCase() === typeFilter)
+    : vans;
+
   const vanElements = filteredVans.map((van) => (
     <div key={van.id} className="van-tile">
       <Link
@@ -46,7 +33,11 @@ export default function Vans() {
         aria-label={`View details for ${van.name}, 
                              priced at $${van.price} per day`}
       >
-        <img src={van.imageUrl} alt={`Image of ${van.name}`} />
+        <img
+          src={van.imageUrl}
+          alt={`Image of ${van.name}`}
+          className="rounded-lg"
+        />
         <div className="van-info flex justify-between gap-2 mb-2 mt-2">
           <p className="text-2xl font-bold">{van.name}</p>
           <p className="text-2xl font-bold flex flex-col">
@@ -67,9 +58,9 @@ export default function Vans() {
           <div className="van-list-filter-buttons flex items-center gap-5 mt-3">
             <div>
               <Link
-                onClick={() => handleFilterChange('type', 'simple')}
+                onClick={() => handleFilterChange("type", "simple")}
                 className={` ${
-                  typeFilter === 'simple' ? 'selected' : null
+                  typeFilter === "simple" ? "selected" : null
                 } van-type simple bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Simple
@@ -77,9 +68,9 @@ export default function Vans() {
             </div>
             <div>
               <Link
-                onClick={() => handleFilterChange('type', 'luxury')}
+                onClick={() => handleFilterChange("type", "luxury")}
                 className={`van-type ${
-                  typeFilter === 'luxury' ? 'selected' : null
+                  typeFilter === "luxury" ? "selected" : null
                 }  luxury bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Luxury
@@ -87,9 +78,9 @@ export default function Vans() {
             </div>
             <div>
               <Link
-                onClick={() => handleFilterChange('type', 'rugged')}
+                onClick={() => handleFilterChange("type", "rugged")}
                 className={`van-type ${
-                  typeFilter === 'rugged' ? 'selected' : null
+                  typeFilter === "rugged" ? "selected" : null
                 } rugged bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Rugged
@@ -98,7 +89,7 @@ export default function Vans() {
           </div>
           {typeFilter && (
             <Link
-              onClick={() => handleFilterChange('type', null)}
+              onClick={() => handleFilterChange("type", null)}
               className="van-type clear-filters underline"
             >
               Clear filters
