@@ -29,15 +29,10 @@ const router = createBrowserRouter(
       {/* Nested Paths */}
       <Route path="/" element={<Layout />}>
         {/*Index routes render into their parent's <Outlet/> at their parent's URL*/}
-        <Route index element={<Home />}></Route>
+        <Route index element={<Home />} errorElement={<Error />}></Route>
         {/* Relative Paths */}
         <Route path="about" element={<About />}></Route>
-        <Route
-          path="vans"
-          element={<Vans />}
-          loader={vansPageLoader}
-          errorElement={<Error></Error>}
-        ></Route>
+        <Route path="vans" element={<Vans />} loader={vansPageLoader}></Route>
         {/* Route with params */}
         <Route path="vans/:id" element={<VansDetail />}></Route>
         <Route path="host" element={<HostLayout />}>
