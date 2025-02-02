@@ -21,7 +21,7 @@ import VansHostInfo from "./pages/Host/VansHostInfo";
 import VansHostPhotos from "./pages/Host/VansHostPhotos";
 import VansHostPricing from "./pages/Host/VansHostPricing";
 import NotFound from "./components/NotFound";
-import Error from "./Components/Error";
+import Error from "./components/Error";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
