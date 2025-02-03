@@ -33,6 +33,6 @@ pnpm run dev
 ```
 
 ##
-Website ini mengenai web penyewaan van, yang user nya dapat melihat list yang dapat disewa,
-dan dapat melihat list van yang akan disewa, dan dapat melihat detail van yang ingin disewa.
+Website ini mengenai web penyewaan van, yang user nya dapat melihat daftar van yang dapat disewa,
+dan melihat detail atau informasi lengkap van. User juga dapat meng-filter tipe van.
 
