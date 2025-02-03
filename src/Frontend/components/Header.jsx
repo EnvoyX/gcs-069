@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
+import avatarImage from '../assets/images/avatar-icon.png';
 
 export default function Header() {
   const activeStyle = {
@@ -14,7 +15,7 @@ export default function Header() {
       >
         #VANLIFE
       </Link>
-      <nav className=" ">
+      <nav className="flex items-center">
         <NavLink
           className="font-[600] text-[#4d4d4d] py-1 px-5 hover:underline hover:text-[#161616]"
           style={({ isActive }) => (isActive ? activeStyle : null)}
@@ -36,6 +37,10 @@ export default function Header() {
         >
           Vans
         </NavLink>
+
+        <Link to="login" className="login-link">
+          <img src={avatarImage} className="login-icon h-5 w-5" />
+        </Link>
       </nav>
     </header>
   );
