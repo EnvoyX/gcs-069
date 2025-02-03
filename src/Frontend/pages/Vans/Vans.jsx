@@ -1,5 +1,5 @@
-import getVans from "../../lib/api";
-import { Link, useSearchParams, useLoaderData } from "react-router-dom";
+import getVans from '../../lib/getVans';
+import { Link, useSearchParams, useLoaderData } from 'react-router-dom';
 
 export function loader() {
   return getVans();
@@ -7,9 +7,8 @@ export function loader() {
 
 export default function Vans() {
   const vans = useLoaderData();
-
   const [searchParams, setSearchParams] = useSearchParams();
-  const typeFilter = searchParams.get("type");
+  const typeFilter = searchParams.get('type');
   function handleFilterChange(key, value) {
     setSearchParams((prevParams) => {
       if (value === null) {
@@ -58,9 +57,9 @@ export default function Vans() {
           <div className="van-list-filter-buttons flex items-center gap-5 mt-3">
             <div>
               <Link
-                onClick={() => handleFilterChange("type", "simple")}
+                onClick={() => handleFilterChange('type', 'simple')}
                 className={` ${
-                  typeFilter === "simple" ? "selected" : null
+                  typeFilter === 'simple' ? 'selected' : null
                 } van-type simple bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Simple
@@ -68,9 +67,9 @@ export default function Vans() {
             </div>
             <div>
               <Link
-                onClick={() => handleFilterChange("type", "luxury")}
+                onClick={() => handleFilterChange('type', 'luxury')}
                 className={`van-type ${
-                  typeFilter === "luxury" ? "selected" : null
+                  typeFilter === 'luxury' ? 'selected' : null
                 }  luxury bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Luxury
@@ -78,9 +77,9 @@ export default function Vans() {
             </div>
             <div>
               <Link
-                onClick={() => handleFilterChange("type", "rugged")}
+                onClick={() => handleFilterChange('type', 'rugged')}
                 className={`van-type ${
-                  typeFilter === "rugged" ? "selected" : null
+                  typeFilter === 'rugged' ? 'selected' : null
                 } rugged bg-[#FFEAD0] py-1 px-4 rounded-lg`}
               >
                 Rugged
@@ -89,7 +88,7 @@ export default function Vans() {
           </div>
           {typeFilter && (
             <Link
-              onClick={() => handleFilterChange("type", null)}
+              onClick={() => handleFilterChange('type', null)}
               className="van-type clear-filters underline"
             >
               Clear filters
