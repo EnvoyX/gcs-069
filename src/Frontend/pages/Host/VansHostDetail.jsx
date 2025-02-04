@@ -1,19 +1,14 @@
-import { NavLink, Link, Outlet, useLoaderData } from 'react-router-dom';
-import getHostVans from '../../lib/getHostVans';
-import requireAuth from '../../utility/requireAuth';
-
-export async function loader({ params }) {
-  await requireAuth();
-  return getHostVans(params.id);
-}
+import { NavLink, Link, Outlet, useParams } from "react-router-dom";
+import { getDataVans } from "../../lib/getVan";
 
 export default function VansHostDetail() {
-  // const { id } = useParams();
-  const currentVan = useLoaderData();
+  const { id } = useParams();
+  const vans = getDataVans(id);
+  const currentVan = vans[0];
   const activeStyle = {
-    fontWeight: 'bold',
-    textDecoration: 'underline',
-    color: '#161616',
+    fontWeight: "bold",
+    textDecoration: "underline",
+    color: "#161616",
   };
 
   return (

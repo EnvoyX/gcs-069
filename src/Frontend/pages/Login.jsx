@@ -1,11 +1,5 @@
 import { useState } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
-
-// Native from web
-export function loader({ request }) {
-  // console.log(new URL(request.url).searchParams.get('message'));
-  return new URL(request.url).searchParams.get("message");
-}
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = useState({
@@ -61,26 +55,8 @@ export default function Login() {
     }
   };
 
-  // with React-Router
-  // const [searchParams, setSearchParams] = useSearchParams();
-  // const message = searchParams.get('message');
-  // console.log(message);
-
-  // Native
-  const message = useLoaderData();
-
-  // function handleSubmit(e) {
-  //   e.preventDefault();
-  //   console.log(loginFormData);
-  // }
-
-  // function handleChange(e) {
-  //   const { name, value } = e.target;
-  //   setLoginFormData((prev) => ({
-  //     ...prev,
-  //     [name]: value,
-  //   }));
-  // }
+  const [searchParams, setSearchParams] = useSearchParams();
+  const message = searchParams.get("message");
 
   return (
     <div className="login-container">

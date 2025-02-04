@@ -1,14 +1,8 @@
-import { Link, useLoaderData } from 'react-router-dom';
-import getHostVans from '../../lib/getHostVans';
-import requireAuth from '../../utility/requireAuth';
-
-export async function loader() {
-  await requireAuth();
-  return getHostVans();
-}
+import { Link } from "react-router-dom";
+import { getDataVans } from "../../lib/getVan";
 
 export default function VansHost() {
-  const vans = useLoaderData();
+  const vans = getDataVans();
 
   const hostVansEls = vans.map((van) => (
     <Link to={`${van.id}`} key={van.id} className="host-van-link-wrapper">

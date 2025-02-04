@@ -1,4 +1,4 @@
-export const van = [
+const vansData = [
   {
     id: "1",
     name: "Modest Explorer",
@@ -54,4 +54,17 @@ export const van = [
     type: "luxury",
     hostId: "789",
   },
+  {
+    id: "6",
+    name: "Green Wonder",
+    price: 70,
+    description:
+      "With this van, you can take your travel life to the next level. The Green Wonder is a sustainable vehicle that's perfect for people who are looking for a stylish, eco-friendly mode of transport that can go anywhere.",
+    imageUrl:
+      "https://assets.scrimba.com/advanced-react/react-router/green-wonder.png",
+    type: "rugged",
+    hostId: "123",
+  },
 ];
+
+export default vansData;
