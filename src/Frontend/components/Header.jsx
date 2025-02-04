@@ -33,6 +33,13 @@ export default function Header() {
         <NavLink
           className="font-[600] text-[#4d4d4d] py-1 px-5 hover:underline hover:text-[#161616]"
           style={({ isActive }) => (isActive ? activeStyle : null)}
+          to="/contact"
+        >
+          Contact
+        </NavLink>
+        <NavLink
+          className="font-[600] text-[#4d4d4d] py-1 px-5 hover:underline hover:text-[#161616]"
+          style={({ isActive }) => (isActive ? activeStyle : null)}
           to="/vans"
         >
           Vans

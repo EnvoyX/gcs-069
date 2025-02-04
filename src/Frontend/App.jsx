@@ -23,6 +23,7 @@ import NotFound from "./components/NotFound";
 import Error from "./components/Error";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Contact from "./pages/Contact";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -32,6 +33,7 @@ const router = createBrowserRouter(
         <Route path="about" element={<About />}></Route>
         <Route path="login" element={<Login />}></Route>
         <Route path="signup" element={<SignUp />}></Route>
+        <Route path="contact" element={<Contact />}></Route>
         <Route
           path="vans"
           element={<Vans />}
