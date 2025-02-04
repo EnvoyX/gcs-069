@@ -48,8 +48,14 @@ run uvicorn (FASTapi)
 uvicorn main:app --reload   
 ```
 
-## Database PostgreSQL 17
-Activate database by connecting it through pgAdmin4 PostgreSQL 17
+## Setup Database PostgreSQL 17
+
+### Connect Database
+Activate database by connecting it through pgAdmin4 PostgreSQL 17 and create new Server or Database
+
+change URL_DATABASE based on your PostgreSQL's username and password in database.py (Backend Folder)
+
+![Screenshot 2025-02-04 225024](https://github.com/user-attachments/assets/6445d330-34d6-47a0-a1a9-2016e2115a75)
 
 
 
