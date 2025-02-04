@@ -60,7 +60,7 @@ export default function Login() {
 
   return (
     <div className="login-container">
-      <h1 className="mb-5 text-3xl font-bold">Sign in to your account</h1>
+      <h1 className="mb-5 text-3xl font-bold">Log in to your account</h1>
       {message && (
         <h3 className="mb-2 text-lg font-bold text-red-500">{message}</h3>
       )}

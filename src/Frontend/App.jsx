@@ -22,6 +22,7 @@ import VansHostPricing from "./pages/Host/VansHostPricing";
 import NotFound from "./components/NotFound";
 import Error from "./components/Error";
 import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
         <Route index element={<Home />}></Route>
         <Route path="about" element={<About />}></Route>
         <Route path="login" element={<Login />}></Route>
+        <Route path="signup" element={<SignUp />}></Route>
         <Route
           path="vans"
           element={<Vans />}

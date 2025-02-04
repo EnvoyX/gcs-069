@@ -23,7 +23,7 @@ export default function HostLayout() {
           throw new Error("Token verification failed");
         }
         requireAuth(true);
-      } catch (error) {
+      } catch {
         localStorage.removeItem("token");
         navigate("/login?message=You Have to Login First");
       }
