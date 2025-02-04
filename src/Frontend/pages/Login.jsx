@@ -1,25 +1,25 @@
-import { useState } from "react";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useState } from 'react';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 export default function Login() {
   const [loginFormData, setLoginFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: '',
   });
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const validateForm = () => {
     if (!username || !password) {
-      setError("Username and password are required");
+      setError('Username and password are required');
       return false;
     }
-    setError("");
+    setError('');
     return true;
   };
   const handleSubmit = async (e) => {
@@ -28,38 +28,38 @@ export default function Login() {
     setLoading(true);
 
     const formDetail = new URLSearchParams();
-    formDetail.append("username", username);
-    formDetail.append("password", password);
+    formDetail.append('username', username);
+    formDetail.append('password', password);
 
     try {
-      const response = await fetch("http://localhost:8000/login", {
-        method: "POST",
+      const response = await fetch('http://localhost:8000/login', {
+        method: 'POST',
         headers: {
-          "Content-type": "application/x-www-form-urlencoded",
+          'Content-type': 'application/x-www-form-urlencoded',
         },
         body: formDetail,
       });
       setLoading(false);
       if (response.ok) {
         const data = await response.json();
-        localStorage.setItem("token", data.access_token);
-        navigate("/host");
+        localStorage.setItem('token', data.access_token);
+        navigate('/host');
       } else {
         const errorData = await response.json();
-        setError(errorData.detail || "Authentication failed!");
+        setError(errorData.detail || 'Authentication failed!');
       }
     } catch (error) {
       console.log(error);
       setLoading(false);
-      setError("An error occured. Please try again later");
+      setError('An error occured. Please try again later');
     }
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
-  const message = searchParams.get("message");
+  const message = searchParams.get('message');
 
   return (
-    <div className="login-container">
+    <div className="flex flex-col items-center px-[27px]">
       <h1 className="mb-5 text-3xl font-bold">Log in to your account</h1>
       {message && (
         <h3 className="mb-2 text-lg font-bold text-red-500">{message}</h3>
@@ -90,7 +90,7 @@ export default function Login() {
           value={password ? password : loginFormData.password}
         />
         <button type="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Login"}
+          {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
     </div>

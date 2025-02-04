@@ -1,10 +1,5 @@
-import { Link, useLocation, useParams } from "react-router-dom";
-import { getDataVans } from "../../lib/getVan";
-// import getVans from '../../lib/getVans';
-
-// export const loader = ({ params }) => {
-//   return getVans(params.id);
-// };
+import { Link, useLocation, useParams } from 'react-router-dom';
+import { getDataVans } from '../../lib/getVan';
 
 export default function VansDetail() {
   const { id } = useParams();
@@ -19,9 +14,9 @@ export default function VansDetail() {
         relative="path"
         className="back-button ml-10 mt-5 inline-block "
       >
-        &larr;{" "}
+        &larr;{' '}
         <span>
-          Back to {location.state.type ? location.state.type : "all"} vans
+          Back to {location.state.type ? location.state.type : 'all'} vans
         </span>
       </Link>
       <div className="van-detail md:grid md:grid-cols-2 items-center flex flex-col text-[#161616]">
