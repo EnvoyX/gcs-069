@@ -75,6 +75,7 @@ createServer({
   },
 
   routes() {
+    // this.urlPrefix = "http://localhost:8000";
     this.namespace = "api";
     this.logging = false;
 
@@ -98,5 +99,15 @@ createServer({
       const id = request.params.id;
       return schema.vans.findBy({ id, hostId: "123" });
     });
+
+    // this.post("/login", (res, request) => {
+    //   return res.all();
+    // });
+    // this.post("/signup", (res, request) => {
+    //   return res.all();
+    // });
+    // this.post("/contact", (res, request) => {
+    //   return res.all();
+    // });
   },
 });
