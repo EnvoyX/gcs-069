@@ -1,4 +1,4 @@
-import vansData from "../utility/vans";
+import vansData from '../utility/vans';
 
 export const getDataVans = (id) => {
   const datas = vansData;

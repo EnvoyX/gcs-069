@@ -11,6 +11,11 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const loadingStyle = {
+    backgroundColor: '#aaaaaa',
+    textColor: '#ffffff',
+    cursor: 'not-allowed',
+  };
 
   const navigate = useNavigate();
 
@@ -89,7 +94,11 @@ export default function Login() {
           placeholder="Password"
           value={password ? password : loginFormData.password}
         />
-        <button type="submit" disabled={loading}>
+        <button
+          type="submit"
+          disabled={loading}
+          style={loading ? loadingStyle : null}
+        >
           {loading ? 'Logging in...' : 'Login'}
         </button>
       </form>
